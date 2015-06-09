@@ -1,5 +1,7 @@
 <?php namespace SLM_QuizPlugin;
 
+use SLM_QuizPlugin\Controllers\RenderController;
+
 /** @var \Herbert\Framework\API $api */
 
 /**
@@ -12,4 +14,9 @@ $api->add('helper', function ()
     $method = array_shift($args);
 
     return forward_static_call_array(__NAMESPACE__ . '\\Helper::' . $method, $args);
+});
+
+$api->add('renderQuiz', function($postId)
+{
+  return (new RenderController)->render($postId);
 });
