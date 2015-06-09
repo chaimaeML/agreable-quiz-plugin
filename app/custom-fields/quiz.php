@@ -1,5 +1,16 @@
 <?php
 
+
+if ( ! class_exists( 'ACF' ) ) {
+  add_action( 'admin_notices', function() {
+    echo '<div class="error"><p>ACF5 Pro is not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
+  } );
+  return;
+}
+
+if( function_exists('register_field_group') ):
+
+
 register_field_group(array (
   'key' => 'quiz_definition',
   'title' => 'Quiz Definition',
@@ -573,3 +584,6 @@ register_field_group(array (
   'instruction_placement' => 'label',
   'hide_on_screen' => '',
 ));
+
+
+endif;
