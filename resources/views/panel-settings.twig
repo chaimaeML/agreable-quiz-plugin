@@ -1,0 +1,42 @@
+<div class="wrap">
+    <h2>Quiz Settings</h2>
+
+    <form action="" method="post">
+        <h3 class="title">Display Settings</h3>
+        <p>Determine the style of the quiz based on this sites brand.</p>
+
+        <table class="form-table">
+            <tbody>
+                <tr>
+                    <th scope="row">Colours</th>
+                    <td>
+                        <label for="quiz_primary_colour">Primary colour</label>
+                        <input name="quiz_primary_colour" type="text" id="quiz_primary_colour" value="{{primary_colour|default('ff00ff')}}" class="medium-text">
+                        <label for="quiz_secondary_colour">Secondary colour</label>
+                        <input name="quiz_secondary_colour" type="text" id="quiz_primary_colour" value="{{secondary_colour|default('ff00ff')}}" class="medium-text">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Font</th>
+                    <td>
+                        <label for="quiz_font_family">Font Family</label>
+                        <input name="quiz_font_family" type="text" id="quiz_primary_colour" value="{{font_family}}" class="medium-text">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Extra CSS</th>
+                    <td><fieldset><legend class="screen-reader-text"><span>Extra CSS</span></legend>
+                            <p>
+                                <textarea name="quiz_override_css" rows="10" cols="50" id="quiz_override_css" class="large-text code">{{override_css}}</textarea>
+                            </p>
+                    </fieldset></td>
+                </tr>
+
+                    </tbody></table>
+
+
+
+    <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes"></p>
+</form>
+
+</div>
