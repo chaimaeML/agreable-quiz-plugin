@@ -27,7 +27,9 @@ class RenderController {
     }
 
     /*
-     *
+     * use with Timber filter 'timber/loader/paths' to add Herbert views to array
+     * @param $paths array
+     * @return $paths array
      */
     public function addPaths($paths){
 
