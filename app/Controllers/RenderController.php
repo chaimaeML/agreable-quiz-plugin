@@ -1,6 +1,7 @@
 <?php namespace SLM_QuizPlugin\Controllers;
 
 use Herbert\Framework\Models\PostMeta;
+use SLM_QuizPlugin\Helper;
 
 class RenderController {
 
@@ -9,11 +10,35 @@ class RenderController {
         $context = \Timber::get_context();
         $context['quiz'] = \Timber::get_post($postId);
 
-        // With herbert. No Timber/Twig helpers.
-        // $html = herbert('Twig_Environment')->render('@SLM_QuizPlugin/template.twig', $context);
-        // With Timber. Wrong view diectory. Looking in theme.
-        $html = \Timber::render( 'template.twig', $context, true);
+        // Called when Timber gets Twig loader.
+        add_filter('timber/loader/paths', array($this, 'addPaths'));
+        // @see https://github.com/jarednova/timber/blob/master/lib/timber-loader.php#L225
 
-        return $html;
+        // Just before the file is rendered. Can bypass file selection here.
+        // add_filter('timber_render_file', 'add_paths');
+        // @see https://github.com/jarednova/timber/blob/master/timber.php#L285
+
+        // Passes an instance of Twig just before rendering but after tpl selection.
+        // add_filter('twig_apply_filters', 'update_twig_loader');
+        // @see https://github.com/jarednova/timber/blob/master/timber.php#L307
+
+        return \Timber::render('slm_quizplugin/template.twig', $context);
+
+    }
+
+    /*
+     *
+     */
+    public function addPaths($paths){
+
+        // Get views specified in herbert.
+        $namespaces = Helper::get('views');
+        foreach ($namespaces as $namespace => $views){
+            foreach ((array) $views as $view){
+                // Add to timber $paths array.
+                array_unshift($paths, $view);
+            }
+        }
+        return $paths;
     }
 }
