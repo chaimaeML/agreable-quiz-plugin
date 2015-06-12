@@ -22,8 +22,11 @@ class RenderController {
         // add_filter('twig_apply_filters', 'update_twig_loader');
         // @see https://github.com/jarednova/timber/blob/master/timber.php#L307
 
-        return \Timber::render('slm_quizplugin/template.twig', $context);
+        wp_enqueue_script( 'slm_quiz_script', Helper::assetUrl('app.js'), array(), '0.1.0', true );
+        wp_enqueue_style( 'slm_quiz_styles', Helper::assetUrl('styles.css'));
 
+        // var_dump('rendering');
+        return \Timber::render('slm_quizplugin/template.twig', $context);
     }
 
     /*
