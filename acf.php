@@ -1,7 +1,7 @@
 <?php
 $widget_config = array (
     'key' => 'widget_quiz',
-    'name' => 'quiz',
+    'name' => 'quiz_plugin',
     'label' => 'Quiz',
     'display' => 'block',
     'sub_fields' => array (
