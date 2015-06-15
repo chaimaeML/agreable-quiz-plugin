@@ -13,7 +13,8 @@ return [
      */
     'requires' => [
         __DIR__ . '/app/customPostTypes.php',
-        __DIR__ . '/app/custom-fields/quiz.php'
+        __DIR__ . '/app/custom-fields/quiz.php',
+        __DIR__ . '/app/hooks/timber_loader_paths.php'
     ],
 
     /**

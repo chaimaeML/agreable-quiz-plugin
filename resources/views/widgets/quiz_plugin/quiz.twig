@@ -8,6 +8,10 @@
 {% endif %}
 #}
 
+{% if quiz is empty %}
+{% set quiz = TimberPost(widget.quiz_post) %}
+{% endif %}
+
 <div class="js-plugin-module quiz {% if appMode %}in-app{% endif %}"
     data-module="Quiz"
     data-section="{{ category.slug }}"
