@@ -19,6 +19,15 @@
     data-quiz-type="{{ quiz.quiz_type }}"
     data-position="main">
 
+    <script>
+        var textOutcomes= [{% for outcome in quiz.get_field('text_outcomes') %}
+            {
+              label: "{{outcome.label}}",
+              description : "{{outcome.description}}",
+              image : "{{TimberImage(outcome.image).src('large')}}"
+            }{% if loop.last == false %},{% endif %}{% endfor %}
+        ];
+    </script>
 
     {% for q in quiz.get_field('questions') %}
     <div class="quiz__question-container">
@@ -33,9 +42,9 @@
         <ul data-question-index="question-{{loop.index0}}" class="answers answers-{{q.answers|length}}">
             {% for answer in q.answers %}
             <li >
-                <div class="answer" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.outcome %}data-oucome-{{answer.outcome}}{% endif %}>
+                <div class="answer" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
                 	{% if answer.image %}
-                	<img class="image-answer" src="{{TimberImage(image).src('medium')}}"/>
+                	<img class="image-answer" src="{{TimberImage(answer.image).src('medium')}}"/>
                 	{% else %}
                 	<div class="answers__answer-text">
                 	    {{ answer.answer_label }}

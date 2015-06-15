@@ -165,11 +165,11 @@
 	        /* Reveal "Quiz complete!" */
 	        $(".score-panel").addClass("is-revealed");
 
-	        console.log(this);
 	        if (this.quizType === "score") {
 	          this.showScore(score);
 	        } else {
-	          showTextOutcome(getTextOutcome());
+	          console.log(this.getTextOutcome());
+	          this.showTextOutcome(this.getTextOutcome());
 	        }
 	      }
 	    },
@@ -201,6 +201,30 @@
 	        $target.parents(".quiz__question-container").addClass("answered");
 
 	        this.render();
+	      }
+	    },
+	    getTextOutcome: {
+	      value: function getTextOutcome() {
+	        var mostPopularOutcome = { index: 1, score: 0 };
+
+	        textOutcomes.forEach($.proxy(function onOutcome(outcome) {
+	          var score = this.$el.find(".answers .selected[data-outcome-" + outcome.index + "]").length;
+	          if (score > mostPopularOutcome.score) {
+	            mostPopularOutcome.index = outcome.index;
+	            mostPopularOutcome.score = outcome.score = score;
+	          }
+	        }, this));
+
+	        return textOutcomes[mostPopularOutcome.index - 1];
+	      }
+	    },
+	    showTextOutcome: {
+	      value: function showTextOutcome(outcome) {
+	        $(".score-panel__message").html(outcome.label);
+	        $(".score-panel__summary").html(outcome.description);
+	        $(".outcome-image").attr("src", outcome.image).show();
+
+	        this.showMore(1000);
 	      }
 	    },
 	    showScore: {
