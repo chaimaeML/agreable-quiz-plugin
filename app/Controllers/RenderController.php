@@ -18,7 +18,9 @@ class RenderController {
      * specific options affecting the style of the quiz.
      * ACF definitions for Panel are in app/panels.php.
      */
+    
     echo view('@SLM_QuizPlugin/styles.twig', [
+        'common_css_path'   => Helper::asset('styles.css'),
         'primary_colour'    => get_field('quiz_primary_colour', 'option'),
         'secondary_colour'  => get_field('quiz_secondary_colour', 'option'),
         'font_family'       => get_field('quiz_font_family', 'option'),
