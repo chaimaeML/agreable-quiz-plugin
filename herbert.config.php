@@ -82,7 +82,8 @@ return [
      * when rendering a view in twig.
      */
     'views' => [
-        'SLM_QuizPlugin' => __DIR__ . '/resources/views'
+        'SLM_QuizPlugin' => __DIR__ . '/resources/views',
+        'SLM_QuizPluginAssets'  => __DIR__ . '/resources/assets'
     ],
 
     /**
