@@ -17,7 +17,7 @@ class RenderController {
      * namespacing. Instead we have added the  Herbert config['views']
      * array to Timbers path. (@see app/hooks/timber_loader_paths.php).
      */
-    echo view('@SLM_QuizPlugin/widgets/quiz_plugin/styles.twig', [
+    echo view('@SLM_QuizPlugin/styles.twig', [
         'primary_colour'    => get_option('quiz_primary_colour'),
         'secondary_colour'  => get_option('quiz_secondary_colour'),
         'font_family'       => get_option('quiz_font_family'),
