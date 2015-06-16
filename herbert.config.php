@@ -43,7 +43,7 @@ return [
      * The widgets to auto-load.
      */
     'widgets' => [
-        __DIR__ . '/app/widgets.php'
+        // __DIR__ . '/app/widgets.php'
     ],
 
     /**
@@ -57,7 +57,7 @@ return [
      * The routes to auto-load.
      */
     'routes' => [
-        'SLM_QuizPlugin' => __DIR__ . '/app/routes.php'
+        // 'SLM_QuizPlugin' => __DIR__ . '/app/routes.php'
     ],
 
     /**
@@ -82,8 +82,7 @@ return [
      * when rendering a view in twig.
      */
     'views' => [
-        'SLM_QuizPlugin' => __DIR__ . '/resources/views',
-        'SLM_QuizPluginAssets'  => __DIR__ . '/resources/assets'
+        'SLM_QuizPlugin' => __DIR__ . '/resources/views'
     ],
 
     /**
