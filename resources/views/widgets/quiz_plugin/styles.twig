@@ -5,6 +5,9 @@
     .answer {
       background-color : #{{ primary_colour|default('ff00ff') }};
       color: #{{ secondary_colour|default('black') }};
+      font-family: {{ font_family }};
     }
+
+    {{ override_css }}
 
 </style>
