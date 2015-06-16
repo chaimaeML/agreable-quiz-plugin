@@ -6,6 +6,8 @@ use SLM_QuizPlugin\Helper;
 class RenderController {
 
   public function enqueue($postId){
+
+    // Enqueue scripts.
     wp_enqueue_script( 'slm_quiz_script', Helper::assetUrl('app.js'), array(), '0.1.0', true );
 
     /*
@@ -21,17 +23,6 @@ class RenderController {
         'font_family'       => get_option('quiz_font_family'),
         'override_css'      => get_option('quiz_override_css'),
     ])->getBody();
-  }
-
-  /* Unused */
-  public function render($postId){
-    $context = \Timber::get_context();
-    $context['quiz'] = \Timber::get_post($postId);
-
-    wp_enqueue_script( 'slm_quiz_script', Helper::assetUrl('app.js'), array(), '0.1.0', true );
-    wp_enqueue_style( 'slm_quiz_styles', Helper::assetUrl('styles.css'));
-
-    \Timber::render('widgets/quiz_plugin/quiz.twig', $context);
   }
 
 }
