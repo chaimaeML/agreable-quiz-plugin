@@ -15,8 +15,3 @@ $api->add('helper', function ()
 
     return forward_static_call_array(__NAMESPACE__ . '\\Helper::' . $method, $args);
 });
-
-$api->add('renderQuiz', function($postId)
-{
-  return (new RenderController)->render($postId);
-});
