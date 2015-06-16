@@ -1,13 +1,19 @@
 <style>
 
+    {# Common CSS #}
     {% include '@SLM_QuizPluginAssets/styles.css' %}
 
+    {#
+        Configurable CSS values provided through custom WP settings.
+        Overrides values in common CSS.
+    #}
     .answer {
       background-color : #{{ primary_colour|default('ff00ff') }};
       color: #{{ secondary_colour|default('black') }};
       font-family: {{ font_family }};
     }
 
-    {{ override_css }}
+    {# Also provided through custom WP settings. #}
+    {{ extra_css }}
 
 </style>

@@ -21,7 +21,7 @@ class RenderController {
         'primary_colour'    => get_option('quiz_primary_colour'),
         'secondary_colour'  => get_option('quiz_secondary_colour'),
         'font_family'       => get_option('quiz_font_family'),
-        'override_css'      => get_option('quiz_override_css'),
+        'extra_css'         => get_option('quiz_extra_css'),
     ])->getBody();
   }
 
