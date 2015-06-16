@@ -1,6 +1,12 @@
 <?php
+
+// $config = require_once 'herbert.config.php';
+// $ns = $config['slm_namespace'];
+
 $widget_config = array (
     'key' => 'widget_quiz',
+    // The 'name' will define the directory that the parent theme looks
+    // for our plugin template in. e.g. views/widgets/quiz_plugin/template.twig.
     'name' => 'quiz_plugin',
     'label' => 'Quiz',
     'display' => 'block',

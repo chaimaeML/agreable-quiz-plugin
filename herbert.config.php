@@ -95,6 +95,15 @@ return [
     /**
      * The asset path.
      */
-    'assets' => '/resources/assets/'
+    'assets' => '/resources/assets/',
 
+    /**
+     * Namespace used in ACF Panel definitions.
+     */
+    'slm_namespace' => 'slm_quiz',
+
+    /**
+     *
+     */
+    'slm_pluginTitle'      => 'Quiz'
 ];
