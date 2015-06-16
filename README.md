@@ -21,7 +21,7 @@ A Croissant theme (e.g. Troisieme) will traverse plugins directory for 'slm' pre
 
 #### Add plugin views to Timber for rendering
 * `/app/hooks/timber_loader_paths.php`  
-Parent theme will include the plugin Twig templates and render using Timber (@see [lab-troisieme-2015/src/views/partials/widget-container.twig](https://bitbucket.org/ShortlistMedia/lab-troisieme-2015/src/a09dddfd3df596f3c8b81db759160ded95a577e4/views/partials/widget-container.twig?at=master#cl-5)). Therefore we add our plugin paths to Timber's internal array of paths using this filter called by Timber: `'timber/loader/paths`. 
+Parent theme will include the plugin Twig templates and render using Timber (see [lab-troisieme-2015/src/views/partials/widget-container.twig](https://bitbucket.org/ShortlistMedia/lab-troisieme-2015/src/a09dddfd3df596f3c8b81db759160ded95a577e4/views/partials/widget-container.twig?at=master#cl-5)). Therefore we add our plugin paths to Timber's internal array of paths using this filter called by Timber: `'timber/loader/paths`. 
 
 #### Fire plugin specific action whilst rendering (to enqueue styles/scripts within plugin)   
 * `/app/hooks/slm_plugin_enqueue.php`  
