@@ -1,12 +1,57 @@
-Herbert
+Shortlist Media Wordpress Quiz Plugin
 ===============
 
-Welcome to the Herbert. Please check out the docs [here](http://getherbert.com/).
-
-Example plugin should be available by 7th June 2015.
+Wordpress Plugin built  for Croissant stack using [Herbert](http://getherbert.com/) plugin framework.
 
 ---
-If your after the old version you can find it here: https://github.com/getherbert/herbert/tree/pre
-And the docs for that version: http://getherbert.com/pre
+
+### Dependencies
+
+* Timber
+* Advanced Custom Fields
+
+---
+
+
+* `/app/customPostType.php` 
+Create custom post type (e.g. quiz)
+
+* `/widget-loader-acf.php` [Troisieme specific]
+A Croissant theme (e.g. Troisieme) will traverse plugins directory for 'slm' prefixed sub directories which contain `widget-loader-acf.php` at their root. This ACF definition is added to list of widgets available in theme. 
+
+* `/app/hooks/timber_loader_paths.php`
+Parent theme will include the plugin Twig templates and render using Timber (@see [lab-troisieme-2015/src/views/partials/widget-container.twig](https://bitbucket.org/ShortlistMedia/lab-troisieme-2015/src/a09dddfd3df596f3c8b81db759160ded95a577e4/views/partials/widget-container.twig?at=master#cl-5)). Therefore we add our plugin paths to Timber's internal array of paths using this filter called by Timber: `'timber/loader/paths`. 
+
+* `/app/hooks/slm_plugin_enqueue.php`
+Just before rendering the plugin template, the parent theme calls Wordpress `do_action('acf_{{name}}_enqueue')`. e.g. (using Timber): 
+`{% do action('slm_'~widget.acf_fc_layout~'_enqueue', widget) %}`  
+The hook name is constructed from the ACF Field Group 'name' in `widget-loader-acf.php`. e.g. 'acf_quiz_plugin_enqueue'
+* `app/panels.php` - Adds Settings panel for installation specific configuration. Uses ACF definitions.
+
+
+##### Add submenu to Post menu or Custom Post Type menu:
+```
+acf_add_options_sub_page(array(
+  'page_title'  => 'Quiz Style Settings',
+  'menu_title'  => 'Quiz Settings',
+  'parent_slug' => 'edit.php?post_type=quiz',
+));
+```
+
+##### Add Custom Fields to menu
+Specify custom fields using `register_field_group($options)`. Best to create in Worpdress Admin and use export function.
+`$options['location']` will be an array specifying where to display the Custom Fields:
+```
+array (
+  array (
+    array (
+      'param' => 'options_page',
+      'operator' => '==',
+      'value' => 'acf-options-quiz-settings',
+    ),
+  ),
+),
+```
+Note: If `acf_add_options_sub_page` is given 'menu_title' of 'Quiz Settings', the location 'value' is 'acf-options-quiz-settings' (as above).
 
 
