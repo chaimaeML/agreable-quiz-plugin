@@ -1,5 +1,8 @@
 <?php namespace SLM_QuizPlugin;
 
+use SLM_QuizPlugin\Helper;
+$ns = Helper::get('slm_namespace');
+
 /*
  * Although we're in the Herbert panel file, we're not using any built in
  * panel functionality because you have to write you're own HTML forms and
@@ -8,7 +11,7 @@
  */
 
 acf_add_options_sub_page(array(
-  'page_title'  => 'Quiz Style Settings',
+  'page_title'  => 'Style Settings',
   'menu_title'  => 'Quiz Settings',
   'parent_slug' => 'edit.php?post_type=quiz',
 ));
@@ -16,13 +19,13 @@ acf_add_options_sub_page(array(
 if( function_exists('register_field_group') ):
 
 register_field_group(array (
-  'key' => 'group_quiz_plugin',
+  'key' => 'group_'.$ns.'_plugin',
   'title' => 'Display Settings',
   'fields' => array (
     array (
-      'key' => 'quiz_plugin_field_quiz_primary_color',
+      'key' => $ns.'_plugin_field_'.$ns.'_primary_color',
       'label' => 'Primary Colour',
-      'name' => 'quiz_primary_colour',
+      'name' => $ns.'_primary_colour',
       'prefix' => '',
       'type' => 'color_picker',
       'instructions' => '',
@@ -36,9 +39,9 @@ register_field_group(array (
       'default_value' => '#ff00ff',
     ),
     array (
-      'key' => 'quiz_plugin_field_quiz_secondary_plugin',
+      'key' => $ns.'_plugin_field_'.$ns.'_secondary_plugin',
       'label' => 'Secondary Colour',
-      'name' => 'quiz_secondary_colour',
+      'name' => $ns.'_secondary_colour',
       'prefix' => '',
       'type' => 'color_picker',
       'instructions' => '',
@@ -52,9 +55,9 @@ register_field_group(array (
       'default_value' => '#ffffff',
     ),
     array (
-      'key' => 'quiz_plugin_field_quiz_font_family',
+      'key' => $ns.'_plugin_field_'.$ns.'_font_family',
       'label' => 'Font Family',
-      'name' => 'quiz_font_family',
+      'name' => $ns.'_font_family',
       'prefix' => '',
       'type' => 'text',
       'instructions' => '',
@@ -74,9 +77,9 @@ register_field_group(array (
       'disabled' => 0,
     ),
     array (
-      'key' => 'quiz_plugin_field_quiz_extra_css',
+      'key' => $ns.'_plugin_field_'.$ns.'_extra_css',
       'label' => 'Extra CSS',
-      'name' => 'quiz_extra_css',
+      'name' => $ns.'_extra_css',
       'prefix' => '',
       'type' => 'textarea',
       'instructions' => '',
