@@ -8,8 +8,8 @@
         Overrides values in common CSS.
     #}
     .answer {
-      background-color : #{{ primary_colour|default('ff00ff') }};
-      color: #{{ secondary_colour|default('black') }};
+      background-color: {{ primary_colour|default('ff00ff') }};
+      color: {{ secondary_colour|default('black') }};
       font-family: {{ font_family }};
     }
 
