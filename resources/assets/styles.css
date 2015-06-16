@@ -74,7 +74,7 @@
   background-color: #000;
   color: #fff;
 }
-.answer > div {
+.answer-text {
   display: table-cell;
   text-align: center;
   pointer-events: none;
@@ -88,20 +88,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/*
-#cp-quiz .answers li .text-answer {
-  text-align: center;
-  pointer-events: none;
-  vertical-align: middle;
-  padding: 10px;
-  display: table-cell;
-}
-
-#cp-quiz .answers li .image-answer {
+.answer .answer-image {
   width: 90%;
   margin: 5%;
 }
-*/
 /* Module/Block: Quiz Complete Panel */
 .quiz-complete-panel {
   border-top: 1px solid #dcdcdc;

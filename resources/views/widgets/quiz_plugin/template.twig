@@ -44,9 +44,9 @@
             <li >
                 <div class="answer" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
                 	{% if answer.image %}
-                	<img class="image-answer" src="{{TimberImage(answer.image).src('medium')}}"/>
+                	<img class="answer-image" src="{{TimberImage(answer.image).src('medium')}}"/>
                 	{% else %}
-                	<div class="answers__answer-text">
+                	<div class="answer-text">
                 	    {{ answer.answer_label }}
                 	</div>
                 	{% endif %}
