@@ -36,7 +36,7 @@ return [
      * The shortcodes to auto-load.
      */
     'shortcodes' => [
-        __DIR__ . '/app/shortcodes.php'
+        // __DIR__ . '/app/shortcodes.php'
     ],
 
     /**
@@ -50,7 +50,7 @@ return [
      * The widgets to auto-load.
      */
     'enqueue' => [
-        __DIR__ . '/app/enqueue.php'
+        // __DIR__ . '/app/enqueue.php'
     ],
 
     /**
@@ -71,7 +71,7 @@ return [
      * The APIs to auto-load.
      */
     'apis' => [
-        'SLM_QuizPlugin' => __DIR__ . '/app/api.php'
+        // 'SLM_QuizPlugin' => __DIR__ . '/app/api.php'
     ],
 
     /**
