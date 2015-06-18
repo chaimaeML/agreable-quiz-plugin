@@ -15,11 +15,11 @@ Wordpress Plugin built  for Croissant stack using [Herbert](http://getherbert.co
 #### Create custom post type
 * `/app/customPostType.php`  
 
-#### Make Widget available to Posts   
+#### Plugin degines an widget using ACF available to articles   
 * `/widget-loader-acf.php`   
 A Croissant theme (e.g. Troisieme) will traverse plugins directory for 'slm' prefixed sub directories which contain `widget-loader-acf.php` at their root. This ACF definition is added to list of widgets available in theme. 
 
-#### Add plugin views to Timber for rendering
+#### Add plugin view path to Timber's paths for rendering
 * `/app/hooks/timber_loader_paths.php`  
 Parent theme will include the plugin Twig templates and render using Timber (see [lab-troisieme-2015/src/views/partials/widget-container.twig](https://bitbucket.org/ShortlistMedia/lab-troisieme-2015/src/a09dddfd3df596f3c8b81db759160ded95a577e4/views/partials/widget-container.twig?at=master#cl-5)). Therefore we add our plugin paths to Timber's internal array of paths using this filter called by Timber: `'timber/loader/paths`. 
 
@@ -33,8 +33,7 @@ The hook name is constructed from the ACF Field Group 'name' in `widget-loader-a
 * `app/panels.php`  
 Adds Settings panel for installation specific configuration. Uses ACF definitions.
 
-
-##### Add submenu to Post menu or Custom Post Type menu:
+##### Using ACF to create panels in Post Type menu
 ```
 acf_add_options_sub_page(array(
   'page_title'  => 'Quiz Style Settings',
