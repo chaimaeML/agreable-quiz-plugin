@@ -16,6 +16,9 @@ acf_add_options_sub_page(array(
   'parent_slug' => 'edit.php?post_type=quiz',
 ));
 
+// Constructed using (lowercased and hyphenated) 'menu_title' from above.
+$options_page_name = 'acf-options-quiz-settings';
+
 if( function_exists('register_field_group') ):
 
 register_field_group(array (
@@ -25,7 +28,7 @@ register_field_group(array (
     array (
       'key' => $ns.'_plugin_field_'.$ns.'_primary_color',
       'label' => 'Primary Colour',
-      'name' => $ns.'_primary_colour',
+      'name' => $ns.'_plugin_settings_property_primary_colour',
       'prefix' => '',
       'type' => 'color_picker',
       'instructions' => '',
@@ -41,7 +44,7 @@ register_field_group(array (
     array (
       'key' => $ns.'_plugin_field_'.$ns.'_secondary_plugin',
       'label' => 'Secondary Colour',
-      'name' => $ns.'_secondary_colour',
+      'name' => $ns.'_plugin_settings_property_secondary_colour',
       'prefix' => '',
       'type' => 'color_picker',
       'instructions' => '',
@@ -57,7 +60,7 @@ register_field_group(array (
     array (
       'key' => $ns.'_plugin_field_'.$ns.'_font_family',
       'label' => 'Font Family',
-      'name' => $ns.'_font_family',
+      'name' => $ns.'_plugin_settings_property_font_family',
       'prefix' => '',
       'type' => 'text',
       'instructions' => '',
@@ -79,7 +82,7 @@ register_field_group(array (
     array (
       'key' => $ns.'_plugin_field_'.$ns.'_extra_css',
       'label' => 'Extra CSS',
-      'name' => $ns.'_extra_css',
+      'name' => $ns.'_plugin_settings_free_text_css',
       'prefix' => '',
       'type' => 'textarea',
       'instructions' => '',
@@ -104,7 +107,7 @@ register_field_group(array (
       array (
         'param' => 'options_page',
         'operator' => '==',
-        'value' => 'acf-options-quiz-settings',
+        'value' => $options_page_name,
       ),
     ),
   ),

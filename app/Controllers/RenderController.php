@@ -22,10 +22,10 @@ class RenderController {
     $ns = Helper::get('slm_namespace');
     echo view('@SLM_QuizPlugin/styles.twig', [
         'common_css_path'   => Helper::asset('styles.css'),
-        'primary_colour'    => get_field($ns.'_primary_colour', 'option'),
-        'secondary_colour'  => get_field($ns.'_secondary_colour', 'option'),
-        'font_family'       => get_field($ns.'_font_family', 'option'),
-        'extra_css'         => get_field($ns.'_extra_css', 'option'),
+        'plugin_settings_property_primary_colour'      => get_field($ns.'_plugin_settings_property_primary_colour', 'option'),
+        'plugin_settings_property_secondary_colour'    => get_field($ns.'_plugin_settings_property_secondary_colour', 'option'),
+        'plugin_settings_property_font_family'         => get_field($ns.'_plugin_settings_property_font_family', 'option'),
+        'plugin_settings_free_text'                    => get_field($ns.'_plugin_settings_free_text_css', 'option'),
     ])->getBody();
   }
 
