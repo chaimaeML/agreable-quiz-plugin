@@ -7,7 +7,7 @@
     $labels = array(
         'name'                => _x( 'Quizzes', 'Post Type General Name', 'text_domain' ),
         'singular_name'       => _x( 'Quiz', 'Post Type Singular Name', 'text_domain' ),
-        'menu_name'           => __( 'Quiz', 'text_domain' ),
+        'menu_name'           => __( 'Quizzes', 'text_domain' ),
         'parent_item_colon'   => __( 'Parent Item:', 'text_domain' ),
         'all_items'           => __( 'All Quizzes', 'text_domain' ),
         'view_item'           => __( 'View Quiz', 'text_domain' ),
@@ -21,8 +21,8 @@
     );
 
     $args = array(
-      'label'               => __( 'external_tile', 'text_domain' ),
-      'description'         => __( 'Link to social media posts or external sites', 'text_domain' ),
+      'label'               => __( 'quiz', 'text_domain' ),
+      'description'         => __( 'Create a quiz for an article', 'text_domain' ),
       'labels'              => $labels,
       'supports'            => array( 'title', 'revisions'),
       'taxonomies'          => array(),
