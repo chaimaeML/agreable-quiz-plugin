@@ -1,4 +1,4 @@
-<?php namespace SLM_QuizPlugin;
+<?php namespace AgreableQuizPlugin;
 
 class Helper {
 

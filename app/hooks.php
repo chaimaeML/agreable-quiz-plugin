@@ -2,14 +2,14 @@
 
 /** @var  \Herbert\Framework\Application $container */
 
-use SLM_QuizPlugin\Hooks\TimberLoaderPaths;
-use SLM_QuizPlugin\Hooks\SLMPluginEnqueue;
+use AgreableQuizPlugin\Hooks\TimberLoaderPaths;
+use AgreableQuizPlugin\Hooks\SLMPluginEnqueue;
 
-if(class_exists('SLM_QuizPlugin\Hooks\TimberLoaderPaths')){
+if(class_exists('AgreableQuizPlugin\Hooks\TimberLoaderPaths')){
   (new TimberLoaderPaths)->init();
 }
 
-if(class_exists('SLM_QuizPlugin\Hooks\SLMPluginEnqueue')){
+if(class_exists('AgreableQuizPlugin\Hooks\SLMPluginEnqueue')){
   (new SLMPluginEnqueue)->init();
 }
 

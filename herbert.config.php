@@ -56,21 +56,21 @@ return [
      * The routes to auto-load.
      */
     'routes' => [
-        // 'SLM_QuizPlugin' => __DIR__ . '/app/routes.php'
+        // 'AgreableQuizPlugin' => __DIR__ . '/app/routes.php'
     ],
 
     /**
      * The panels to auto-load.
      */
     'panels' => [
-        'SLM_QuizPlugin' => __DIR__ . '/app/panels.php'
+        'AgreableQuizPlugin' => __DIR__ . '/app/panels.php'
     ],
 
     /**
      * The APIs to auto-load.
      */
     'apis' => [
-        // 'SLM_QuizPlugin' => __DIR__ . '/app/api.php'
+        // 'AgreableQuizPlugin' => __DIR__ . '/app/api.php'
     ],
 
     /**
@@ -81,7 +81,7 @@ return [
      * when rendering a view in twig.
      */
     'views' => [
-        'SLM_QuizPlugin' => __DIR__ . '/resources/views'
+        'AgreableQuizPlugin' => __DIR__ . '/resources/views'
     ],
 
     /**
@@ -99,10 +99,10 @@ return [
     /**
      * Namespace used in ACF Panel definitions.
      */
-    'slm_namespace' => 'slm_quiz',
+    'agreable_namespace' => 'agreable_quiz',
 
     /**
      *
      */
-    'slm_pluginTitle'      => 'Quiz'
+    'agreable_pluginTitle'      => 'Quiz'
 ];

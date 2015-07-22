@@ -1,8 +1,8 @@
-<?php namespace SLM_QuizPlugin;
+<?php namespace AgreableQuizPlugin;
 
-use SLM_QuizPlugin\Helper;
-// $ns = Helper::get('slm_namespace');
-$ns = 'slm_quiz';
+use AgreableQuizPlugin\Helper;
+// $ns = Helper::get('agreable_namespace');
+$ns = 'agreable_quiz';
 
 /*
  * Although we're in the Herbert panel file, we're not using any built in

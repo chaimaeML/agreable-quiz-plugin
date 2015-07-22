@@ -1,11 +1,11 @@
-<?php namespace SLM_QuizPlugin\Hooks;
+<?php namespace AgreableQuizPlugin\Hooks;
 
-use SLM_QuizPlugin\Controllers\RenderController;
+use AgreableQuizPlugin\Controllers\RenderController;
 
 class SLMPluginEnqueue {
 
   public function init() {
-    \add_action('slm_quiz_plugin_enqueue', array($this, 'enqueue'));
+    \add_action('agreable_quiz_plugin_enqueue', array($this, 'enqueue'));
   }
 
   public function enqueue($paths){

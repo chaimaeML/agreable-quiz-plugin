@@ -1,6 +1,6 @@
-<?php namespace SLM_QuizPlugin\Hooks;
+<?php namespace AgreableQuizPlugin\Hooks;
 
-use SLM_QuizPlugin\Helper;
+use AgreableQuizPlugin\Helper;
 
 class TimberLoaderPaths {
 
