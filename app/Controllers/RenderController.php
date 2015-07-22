@@ -4,7 +4,7 @@ use AgreableQuizPlugin\Helper;
 
 class RenderController {
 
-  public function enqueue($postId){
+  public function enqueue(){
 
     // Enqueue scripts.
     wp_enqueue_script( 'agreable_quiz_script', Helper::assetUrl('app.js'), array(), '1.0.0', true );
