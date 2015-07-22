@@ -2,7 +2,7 @@
 
 /**
  * @wordpress-plugin
- * Plugin Name:       SLM Quiz Plugin
+ * Plugin Name:       Agreable Quiz Plugin
  * Plugin URI:        http://shortlistmedia.co.uk
  * Description:       Created custom quizes.
  * Version:           0.1.0
@@ -11,7 +11,7 @@
  * License:           MIT
  */
 
-if(file_exists(__DIR__ . '/../../../../vendor/autoload.php')){
+if(file_exists(__DIR__ . '/../../../../vendor/getherbert/')){
   require_once __DIR__ . '/../../../../vendor/autoload.php';
 } else {
   require_once __DIR__ . '/vendor/autoload.php';
