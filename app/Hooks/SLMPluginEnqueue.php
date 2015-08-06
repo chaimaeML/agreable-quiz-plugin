@@ -10,7 +10,8 @@ class SLMPluginEnqueue {
 
   public function plugin_enqueue(){
     $r = new RenderController();
-    $r->enqueue();
+    $r->enqueue_js();
+    $r->inline_css();
   }
 
 }
