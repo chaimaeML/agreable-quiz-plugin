@@ -9,7 +9,7 @@ $router->get([
 
 $router->get([
   'as'   => 'quiz_preview',
-  'uri'  => '/quiz/{slug}/preview',
+  'uri'  => '/quiz/{slug}',
   'uses' => __NAMESPACE__ . '\Controllers\RenderController@preview'
 ]);
 
