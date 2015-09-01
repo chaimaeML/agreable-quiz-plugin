@@ -5,6 +5,29 @@ use AgreableQuizPlugin\Helper;
 class RenderController {
 
   /*
+   * Output preview. Necessary for UTF8 encoding of quotes, etc.
+   */
+  public function preview($slug){
+
+    echo <<<HTML
+<!doctype html>
+<html lang="">
+  <head>
+      <meta charset="utf-8">
+  </head>
+  <body>
+HTML;
+
+    $this->embed($slug);
+
+    echo <<<HTML
+    </body>
+</html>
+HTML;
+
+  }
+
+  /*
    * Output CSS, JS inline and outputs markup using Timber.
    */
   public function embed($slug){
