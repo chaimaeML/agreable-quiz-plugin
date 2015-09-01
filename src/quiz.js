@@ -22,16 +22,6 @@ class Quiz extends Backbone.View {
       'click .cp-progress li' : 'moveToQuestion'
     };
 
-    if (navigator.userAgent.indexOf('Chrome') > 0) {
-      $('html').addClass('chrome')
-    }
-
-    if (navigator.userAgent.indexOf('Windows') > 0) {
-     $('html').addClass('windows')
-    }
-
-    this.$el.addClass('cp-stylist')
-    // this.addStyles() // Perhaps unneeded?
     this.render()
     super()
 
