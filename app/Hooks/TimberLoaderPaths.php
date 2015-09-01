@@ -2,6 +2,16 @@
 
 use AgreableQuizPlugin\Helper;
 
+/*
+ * Makes Timber aware of our plugin's templates/views.
+ *
+ * This plugin contains the twig template that will be rendered through the
+ * theme. The theme will use Twig+Timber to render. Soooooo, we wait for
+ * timber's action `timber/loader/paths` to be called and make Timber aware
+ * of our plugin's templates/view paths.
+ *
+ * @author Gareth Foote
+ */
 class TimberLoaderPaths {
 
   public function init() {
