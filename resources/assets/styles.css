@@ -351,57 +351,134 @@ li.answered .flipper {
   -ms-filter: none;
   filter: none;
 }
-/*
- * The styles below are not implemented as yet
- * Is .ie-old going to be used in new site?
- * Is .chrome.windows transform: rotate an issue still?
- */
-/*
-
-.quiz-complete-panel h2, #cp-quiz-share, .cp-more, #cp-quiz {
+.quiz-sharing-wrapper {
+  position: relative;
+  margin: 40px auto;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.quiz-sharing-wrapper.hide-wrapper {
+  height: 0;
   opacity: 0;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
-
-.cp-more, #cp-quiz-share
-  opacity 0
+.quiz-sharing-wrapper.show-wrapper {
+  height: auto !important;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  min-height: 320px;
 }
-
-.at-resp-share-element a .label {
-  font-family: 'Arial Black','Arial Bold',Arial,Helvetica,sans-serif;
+.quiz-sharing-facebook {
+  background-color: #3b5999;
+}
+.quiz-sharing-facebook:hover {
+  background-color: #293e6b;
+}
+.quiz-sharing-twitter {
+  background-color: #55acee;
+}
+.quiz-sharing-twitter:hover {
+  background-color: #157ece;
+}
+.quiz-sharing-google {
+  background-color: #dd4b39;
+}
+.quiz-sharing-google:hover {
+  background-color: #a62c1d;
+}
+.quiz-sharing-bfc {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: #eaeaea;
+  padding-right: 320px;
+  height: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+.quiz-sharing-content {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.quiz-sharing-quote {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+@media (min-width: 768px) {
+  .quiz-sharing-quote {
+    font-size: 34px;
+  }
+}
+.quiz-sharing-row {
+  overflow: hidden;
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+.btn.quiz-sharing-button {
+  -webkit-border-radius: 0px !important;
+  border-radius: 0px !important;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  display: block;
+  float: left;
+  width: 33.3333333333%;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  padding: 0px;
 }
-
-.ie-old #cp-quiz .cp-progress li.answered .flipper, .ie-old #cp-quiz .cp-progress .front {
-  transform: rotateY(0deg) !important;
+.btn.quiz-sharing-vote-button {
+  -webkit-border-radius: 10px !important;
+  border-radius: 10px !important;
+  height: auto;
+  padding: 10px;
+  line-height: 1.3;
 }
-
-.ie-old #cp-quiz .cp-progress li {
-  line-height: 28px;
+@media (min-width: 480px) {
+  .btn.quiz-sharing-button {
+    font-size: 16px;
+    letter-spacing: 0.19em;
+  }
 }
-
-.ie-old #cp-quiz .cp-progress li.answered .back {
-  display: none;
+.quiz-sharing-facebook {
+  background-color: #3b5999;
 }
-.ie-old #cp-quiz .cp-progress li .flipper .front {
-  background-color: #7d7e7f;
+.quiz-sharing-facebook:hover {
+  background-color: #293e6b;
 }
-.ie-old #cp-quiz .cp-progress li.answered .flipper .front {
-  background-color: #000;
+.quiz-sharing-twitter {
+  background-color: #55acee;
 }
-.ie-old #cp-quiz .cp-progress li .front, .chrome.windows #cp-quiz .cp-progress li .front, .chrome.windows #cp-quiz .cp-progress li .back {
-  padding-top: 0px;
+.quiz-sharing-twitter:hover {
+  background-color: #157ece;
 }
-.ie-old #cp-quiz .cp-progress li.quiz-complete.correct .flipper .front {
-  background-color: rgb(34, 134, 34);
+.quiz-sharing-google {
+  background-color: #dd4b39;
 }
-.ie-old #cp-quiz .cp-progress li.quiz-complete.incorrect .flipper .front {
-  background-color: #DD371E;
+.quiz-sharing-google:hover {
+  background-color: #a62c1d;
 }
-
-.ie-old #cp-quiz .cp-progress.cp-static  ul {
-  width: 110%;
+.is-black-bold {
+  color: #000;
+  font-weight: bold;
 }
-*/

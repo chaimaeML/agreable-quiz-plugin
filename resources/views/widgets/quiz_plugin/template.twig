@@ -98,4 +98,36 @@
         </div>
     </div>
 
+    <div class="js-outcome-sharing quiz-sharing-wrapper hide-wrapper">
+      <div class="quiz-sharing-bfc"></div>
+      <div class="quiz-sharing-content">
+        <div class="quiz-sharing-quote"><span>“</span><em><span>{{quiz.title}} - </span><span class="js-outcome-replace"></span></em><span>”</span>
+        </div>
+        <div class="quiz-sharing-row">
+          <button class="quiz-sharing-button quiz-sharing-facebook js-share-facebook btn">Facebook</button>
+          <button class="quiz-sharing-button quiz-sharing-twitter js-share-twitter btn">Twitter</button>
+          <button class="quiz-sharing-button quiz-sharing-google js-share-google btn">Google+</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '854565077900307',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+    </script>
+
 </div>
