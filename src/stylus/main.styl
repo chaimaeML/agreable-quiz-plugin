@@ -280,58 +280,104 @@ li.answered .flipper
 .answer-information.is-revealed
   opacity 1
 
-/*
- * The styles below are not implemented as yet
- * Is .ie-old going to be used in new site?
- * Is .chrome.windows transform: rotate an issue still?
- */
+.quiz-sharing-wrapper
+  position relative
+  margin 40px auto
+  transition all 0.5s ease-out
+  &.hide-wrapper
+    height 0
+    opacity 0
+  &.show-wrapper
+    height auto !important
+    opacity 1
+    min-height 320px
 
-/*
+.quiz-sharing-facebook
+  background-color #3b5999
+  &:hover
+    background-color #293e6b
 
-.quiz-complete-panel h2, #cp-quiz-share, .cp-more, #cp-quiz {
-  opacity: 0;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
-}
+.quiz-sharing-twitter
+  background-color #55acee
+  &:hover
+    background-color #157ece
 
-.cp-more, #cp-quiz-share
-  opacity 0
-}
+.quiz-sharing-google
+  background-color #dd4b39
+  &:hover
+    background-color #a62c1d
 
-.at-resp-share-element a .label {
-  font-family: 'Arial Black','Arial Bold',Arial,Helvetica,sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+.quiz-sharing-bfc
+  position absolute
+  left 50%
+  transform translateX(-50%)
+  background #eaeaea
+  padding-right 320px
+  height 100%
+  border-radius 100%
 
-.ie-old #cp-quiz .cp-progress li.answered .flipper, .ie-old #cp-quiz .cp-progress .front {
-  transform: rotateY(0deg) !important;
-}
+.quiz-sharing-content
+  width: 100%
+  position absolute
+  top 50%
+  transform translateY(-50%)
 
-.ie-old #cp-quiz .cp-progress li {
-  line-height: 28px;
-}
+.quiz-sharing-quote
+  font-size 24px
+  margin-top 20px
+  margin-bottom 20px
+  text-align center
+  line-height 1.3
+  -webkit-font-smoothing antialiased
 
-.ie-old #cp-quiz .cp-progress li.answered .back {
-  display: none;
-}
-.ie-old #cp-quiz .cp-progress li .flipper .front {
-  background-color: #7d7e7f;
-}
-.ie-old #cp-quiz .cp-progress li.answered .flipper .front {
-  background-color: #000;
-}
-.ie-old #cp-quiz .cp-progress li .front, .chrome.windows #cp-quiz .cp-progress li .front, .chrome.windows #cp-quiz .cp-progress li .back {
-  padding-top: 0px;
-}
-.ie-old #cp-quiz .cp-progress li.quiz-complete.correct .flipper .front {
-  background-color: rgb(34, 134, 34);
-}
-.ie-old #cp-quiz .cp-progress li.quiz-complete.incorrect .flipper .front {
-  background-color: #DD371E;
-}
+@media (min-width: 768px)
+  .quiz-sharing-quote
+    font-size 34px
 
-.ie-old #cp-quiz .cp-progress.cp-static  ul {
-  width: 110%;
-}
-*/
+.quiz-sharing-row
+  overflow hidden
+  margin-bottom 20px
+  max-width 500px
+  margin auto
+
+.btn
+  &.quiz-sharing-button
+    border-radius 0px !important
+    text-transform uppercase
+    display block
+    float left
+    width 33.3333333333%
+    border none
+    color #fff
+    font-size 14px
+    letter-spacing 0.1em
+    padding 0px
+  &.quiz-sharing-vote-button
+    border-radius 10px !important
+    height auto
+    padding 10px
+    line-height 1.3
+
+@media (min-width: 480px)
+  .btn.quiz-sharing-button
+    font-size 16px
+    letter-spacing 0.19em
+
+.quiz-sharing-facebook
+  background-color #3b5999
+  &:hover
+    background-color #293e6b
+
+.quiz-sharing-twitter
+  background-color #55acee
+  &:hover
+    background-color #157ece
+
+.quiz-sharing-google
+  background-color #dd4b39
+  &:hover
+    background-color #a62c1d
+
+.is-black-bold
+  color #000
+  font-weight bold

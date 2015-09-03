@@ -24,7 +24,7 @@ module.exports = {
 
   plugins: [
     new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({minimize:true})
   ],
 
   resolve: {

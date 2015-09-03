@@ -7,7 +7,6 @@ class Quiz extends Backbone.View {
   constructor (options) {
 
     console.log('Quiz::constructor')
-    console.log(options);
     this.setElement(options.el)
     this.$el = $(options.el)
 
@@ -15,6 +14,7 @@ class Quiz extends Backbone.View {
     this.$questions = this.$('.question')
     this.$progressItems = this.$('.cp-progress__items li')
     this.scrollTimer = new Date()
+    this.shareText = "";
 
     // Backbone view events
     this.events = {
@@ -45,14 +45,12 @@ class Quiz extends Backbone.View {
 
   updateQuiz(){
     var numberAnswered = this.$('.answer.selected').length
-    console.log(numberAnswered, this.$questions.length)
 
     if (numberAnswered >= this.$questions.length) {
       var score = this.$el.find('.selected[data-cor]').length
       this.endQuiz(score)
     } else {
       var message = numberAnswered + ' of ' + this.$questions.length + ' answered'
-      console.log(message)
 
       this.$('.cp-progress-text').html(message)
     }
@@ -93,7 +91,6 @@ class Quiz extends Backbone.View {
     if (this.quizType === 'score') {
       this.showScore(score)
     } else {
-      console.log(this.getTextOutcome())
       this.showTextOutcome(this.getTextOutcome())
     }
 
@@ -146,6 +143,8 @@ class Quiz extends Backbone.View {
     $('.score-panel__summary').html(outcome.description)
     $('.outcome-image').attr('src', outcome.image).show()
 
+    $('.js-outcome-replace').html('My result <span class="is-black-bold">'+outcome.label+'</span>')
+    this.shareText = $('.quiz-sharing-quote').text();
     this.showMore(1000)
   }
 
@@ -183,10 +182,13 @@ class Quiz extends Backbone.View {
 
     var timeTakenToRevealAnswers = revealOffest + (revealAnswerDuration * (numQuestions + 1))
 
+    $('.js-outcome-replace').html('I scored <span class="is-black-bold">'+score+' out of '+ numQuestions+'</span>')
+    this.shareText = $('.quiz-sharing-quote').text();
+
     this.showMore()
   }
 
-  showMore(timeTakenToRevealAnswers){
+  showMore(timeTakenToRevealAnswers=1000){
 
     /* Show answer information */
     $('.answer-information').addClass('is-revealed')
@@ -198,19 +200,59 @@ class Quiz extends Backbone.View {
 
     /* Show sarcastic message */
     setTimeout(function() {
-      $('.score-panel__summary').addClass('is-revealed')
+      this.$('.score-panel__summary').addClass('is-revealed')
     }, timeTakenToRevealAnswers + 1000)
 
     /* Show sharing */
     setTimeout(function() {
-      $('#cp-quiz-share').addClass('is-revealed')
-    }, timeTakenToRevealAnswers + 2000)
+      $('.js-outcome-sharing').addClass('show-wrapper').removeClass('hide-wrapper')
+    }, timeTakenToRevealAnswers + 1000)
 
   }
 
   render() {
     this.updateQuiz()
     this.updateProgressBar()
+    $('.js-share-facebook').on('click', $.proxy(this.shareFB, this));
+    $('.js-share-twitter').on('click', $.proxy(this.shareTwitter, this));
+    $('.js-share-google').on('click', $.proxy(this.shareGoogle, this));
+  }
+
+  shareGoogle(){
+    var url = 'https://plus.google.com/share?url=' + window.location.href
+    window.open(url,'','height=500,width=800');
+  }
+
+  shareTwitter(){
+    var twitterHandle = '@ShortList';
+    if (window.location.host == "www.stylist.co.uk") {
+      twitterHandle = "@StylistMagazine"
+    } else if (window.location.host == "www.emeraldstreet.com") {
+      twitterHandle = "@EmeraldStreet"
+    } else if (window.location.host == "www.mrhyde.com") {
+      twitterHandle = "@Mr_Hyde"
+    }
+
+    var href = window.location.href
+    var shareText = encodeURIComponent(this.shareText + ' ' + twitterHandle)
+
+    var url = "https://twitter.com/intent/tweet?text="+shareText+"&url="+href;
+    window.open(url,'','height=300,width=600');
+  }
+
+  shareFB(){
+    if(!FB){
+      return;
+    }
+
+    FB.ui({
+      method: 'feed',
+      link: window.location.href,
+      name: this.shareText,
+      description: 'Test yourself on ' + window.location.hostname,
+      show_error: true,
+      redirect_uri: window.location.href
+    }, function(response){});
   }
 
 }
