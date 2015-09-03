@@ -8,9 +8,11 @@
         Overrides values in common CSS.
     #}
     .answer {
-      background-color: {{ plugin_settings_property_primary_colour|default('ff00ff') }};
-      color: {{ plugin_settings_property_secondary_colour|default('black') }};
+      background-color: {{ plugin_settings_property_primary_colour|default('#ff00ff') }};
+      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
+      {% if plugin_settings_property_font_family %}
       font-family: {{ plugin_settings_property_font_family }};
+      {% endif %}
     }
 
     {# Free text CSS also provided through WP settings panel. #}

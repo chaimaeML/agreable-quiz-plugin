@@ -567,6 +567,22 @@ register_field_group(array (
               ),
           ),
       ),
+      array (
+        'key' => 'quiz_definition_message',
+        'label' => 'Previewing & Embedding',
+        'name' => '',
+        'type' => 'message',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array (
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'message' => 'To preview correctly you will need to publish first. Once happy with preview you can get the raw HTML by suffixing the URL with "embed". e.g. <b>http://embeds-local.shortlist.com/quiz/how-well-do-you-know-your-cheese/embed</b> ',
+        'esc_html' => 0,
+      ),
   ),
   'location' => array (
       array (
