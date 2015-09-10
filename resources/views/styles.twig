@@ -7,12 +7,28 @@
         Configurable CSS values provided through WP settings panel.
         Overrides values in common CSS.
     #}
-    .answer {
-      background-color: {{ plugin_settings_property_primary_colour|default('#ff00ff') }};
-      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
+    .quiz__answer {
+      background-color: {{ plugin_settings_property_secondary_colour|default('#ff00ff') }};
+      color: {{ plugin_settings_property_primary_colour|default('#000') }};
       {% if plugin_settings_property_font_family %}
       font-family: {{ plugin_settings_property_font_family }};
       {% endif %}
+    }
+
+    .flipper__circle--back {
+      background-color: {{ plugin_settings_property_secondary_colour|default('#ff00ff') }};
+      color: {{ plugin_settings_property_primary_colour|default('#000') }};
+
+    }
+
+    .flipper__circle--front {
+      background-color: {{ plugin_settings_property_primary_colour|default('#ff00ff') }};
+      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
+
+    }
+
+    .quiz__score-panel__summary {
+      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
     }
 
     {# Free text CSS also provided through WP settings panel. #}
