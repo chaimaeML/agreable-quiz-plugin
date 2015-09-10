@@ -11,15 +11,15 @@ class Quiz extends Backbone.View {
     this.$el = $(options.el)
 
     this.quizType = this.$el.data('quiz-type');
-    this.$questions = this.$('.question')
-    this.$progressItems = this.$('.cp-progress__items li')
+    this.quizLength = this.$('.js-quiz-question').length;
+    this.$progressItems = this.$('.js-quiz-progress-counter li')
     this.scrollTimer = new Date()
     this.shareText = "";
 
     // Backbone view events
     this.events = {
-      'click .answer'         : 'onAnswerSelect',
-      'click .cp-progress li' : 'moveToQuestion'
+      'click .js-quiz-answer'               : 'onAnswerSelect',
+      'click .js-quiz-progress-counter li'  : 'moveToQuestion'
     };
 
     this.render()
@@ -44,15 +44,15 @@ class Quiz extends Backbone.View {
   }
 
   updateQuiz(){
-    var numberAnswered = this.$('.answer.selected').length
+    var numberAnswered = this.$('.js-quiz-answer.is-selected').length
 
-    if (numberAnswered >= this.$questions.length) {
-      var score = this.$el.find('.selected[data-cor]').length
+    if (numberAnswered >= this.quizLength) {
+      var score = this.$el.find('.is-selected[data-cor]').length
       this.endQuiz(score)
     } else {
-      var message = numberAnswered + ' of ' + this.$questions.length + ' answered'
+      var message = numberAnswered + ' of ' + this.quizLength + ' answered'
 
-      this.$('.cp-progress-text').html(message)
+      this.$('.js-quiz-progress-text').html(message)
     }
   }
 
@@ -60,33 +60,30 @@ class Quiz extends Backbone.View {
     var $parent = $(el).parents('ul')
     var answeredQuestionIndex = $parent.data('question-index').replace('question-', '')
     var $item = this.$progressItems.eq(answeredQuestionIndex)
-    $item.addClass('answered')
-    if ($parent.find('.selected[data-cor]').length) {
-      $item.addClass('correct')
+    $item.addClass('is-answered')
+    if ($parent.find('.is-selected[data-cor]').length) {
+      $item.addClass('is-correct')
     } else {
-      $item.addClass('incorrect')
+      $item.addClass('is-incorrect')
     }
   }
 
   updateProgressBar() {
     this.$progressItems
-        .removeClass('answered')
-        .removeClass('correct')
-        .removeClass('incorrect')
+        .removeClass('is-answered')
+        .removeClass('is-correct')
+        .removeClass('is-incorrect')
 
-    this.$('.selected').each($.proxy(this.updateProgressBarItem, this))
+    this.$('.is-selected').each($.proxy(this.updateProgressBarItem, this))
   }
 
   endQuiz(score) {
-    this.$el.addClass('quiz-complete')
+    this.$el.addClass('is-complete')
 
     // move to finish
-    $(window).scrollTop(this.$('.quiz-complete-panel').position().top - (($(window).height() /2) -100))
+    $(window).scrollTop(this.$('.js-quiz-progress-panel').position().top - (($(window).height() /2) -100))
 
-    $('.cp-progress-text').html('You\'re done!')
-
-    /* Reveal "Quiz complete!" */
-    $('.score-panel').addClass('is-revealed')
+    $('.js-quiz-progress-text').html('You\'re done!')
 
     if (this.quizType === 'score') {
       this.showScore(score)
@@ -108,18 +105,18 @@ class Quiz extends Backbone.View {
 
   positionProgressBar() {
 
-    if (($(window).scrollTop() + $(window).height()-100) > $('.cp-progress-anchor').offset().top) {
-      $('.cp-progress').addClass('is-static')
+    if (($(window).scrollTop() + $(window).height()-100) > $('.js-quiz-progress-anchor').offset().top) {
+      $('.js-quiz-progress-counter').addClass('is-static')
     } else {
-      $('.cp-progress').removeClass('is-static')
+      $('.js-quiz-progress-counter').removeClass('is-static')
     }
   }
 
   onAnswerSelect(e) {
     var $target = $(e.currentTarget);
-    $target.parents('ul').find('.answer').removeClass('selected')
-    $target.addClass('selected')
-    $target.parents('.quiz__question-container').addClass('answered')
+    $target.parents('ul').find('.js-quiz-answer').removeClass('is-selected')
+    $target.addClass('is-selected')
+    $target.parents('.js-quiz-question').addClass('is-answered')
 
     this.render()
   }
@@ -128,7 +125,7 @@ class Quiz extends Backbone.View {
     var mostPopularOutcome = {index: 1, score: 0}
 
     textOutcomes.forEach($.proxy(function onOutcome(outcome){
-      var score = this.$el.find('.answers .selected[data-outcome-' + outcome.index + ']').length
+      var score = this.$el.find('.answers .is-selected[data-outcome-' + outcome.index + ']').length
         if (score > mostPopularOutcome.score) {
           mostPopularOutcome.index = outcome.index
           mostPopularOutcome.score = outcome.score = score
@@ -139,51 +136,53 @@ class Quiz extends Backbone.View {
   }
 
   showTextOutcome(outcome) {
-    $('.score-panel__message').html(outcome.label)
-    $('.score-panel__summary').html(outcome.description)
-    $('.outcome-image').attr('src', outcome.image).show()
-
-    $('.js-outcome-replace').html('My result <span class="is-black-bold">'+outcome.label+'</span>')
-    this.shareText = $('.quiz-sharing-quote').text();
+    $('.js-quiz-score-message').html(outcome.label)
+    $('.js-quiz-score-summary').html(outcome.description)
+    $('.js-quiz-outcome-image').attr('src', outcome.image).show()
+    $('.js-sharing-outcome').html(`My result <span class="is-bold">${outcome.label}</span>`)
+    this.shareText = $('.js-sharing-quote').text();
     this.showMore(1000)
   }
 
   showScore(score) {
 
-    var numQuestions = this.$questions.length
-    this.$('.score-panel__message__score').html(score)
-    this.$el.find('.score-panel__message__total').html(numQuestions)
+    var numQuestions = this.quizLength
+    this.$('.js-quiz-score').html(score)
+    this.$el.find('.js-quiz-total').html(numQuestions)
+    $('.js-sharing-outcome').html(`My score was <span class="is-bold">${score}  out of ${numQuestions}</span>`)
 
+
+    var scoreProportion = score/numQuestions
     var message
-    if (score <= 8) {
-      message = $('#cp-quiz-message-bad').html()
-    } else if (score <= 13) {
-      message = $('#cp-quiz-message-okay').html()
-    } else if (score <= 17) {
-      message = $('#cp-quiz-message-good').html()
+    if (scoreProportion <= 0.4) {
+      message = $('#quiz-message-bad').html()
+    } else if (scoreProportion <= 0.65) {
+      message = $('#quiz-message-okay').html()
+    } else if (scoreProportion <= 0.85) {
+      message = $('#quiz-message-good').html()
     } else {
-      message = $('#cp-quiz-message-excellent').html()
+      message = $('#quiz-message-excellent').html()
     }
 
-    $('.score-panel__summary').html(message)
+    $('.js-quiz-score-summary').html(message)
 
     /* Slowly reveal answers */
     var revealAnswerDuration = 200
     var revealOffest = 500
     var i = 1
     setTimeout(function() {
-      $('.cp-progress li').each(function(index, el) {
+      $('.js-quiz-progress-counter li').each(function(index, el) {
         var $item = $(el)
         setTimeout(function() {
-          $item.addClass('quiz-complete')
+          $item.addClass('is-complete')
         }, i++ * revealAnswerDuration)
       })
     }, revealOffest)
 
     var timeTakenToRevealAnswers = revealOffest + (revealAnswerDuration * (numQuestions + 1))
 
-    $('.js-outcome-replace').html('I scored <span class="is-black-bold">'+score+' out of '+ numQuestions+'</span>')
-    this.shareText = $('.quiz-sharing-quote').text();
+    $('.js-outcome-replace').html('I scored <span class="is-bold">'+score+' out of '+ numQuestions+'</span>')
+    this.shareText = $('.js-sharing-quote').text();
 
     this.showMore()
   }
@@ -191,21 +190,21 @@ class Quiz extends Backbone.View {
   showMore(timeTakenToRevealAnswers=1000){
 
     /* Show answer information */
-    $('.answer-information').addClass('is-revealed')
+    $('.js-quiz-answer-info').addClass('is-revealed')
 
     /* Show result */
     setTimeout(function() {
-     $('.score-panel__message').addClass('is-revealed')
+     $('.js-quiz-score-message').addClass('is-revealed')
     }, timeTakenToRevealAnswers)
 
     /* Show sarcastic message */
     setTimeout(function() {
-      this.$('.score-panel__summary').addClass('is-revealed')
+      this.$('.js-quiz-score-summary').addClass('is-revealed')
     }, timeTakenToRevealAnswers + 1000)
 
     /* Show sharing */
     setTimeout(function() {
-      $('.js-outcome-sharing').addClass('show-wrapper').removeClass('hide-wrapper')
+      $('.js-sharing').addClass('show-wrapper').removeClass('hide-wrapper')
     }, timeTakenToRevealAnswers + 1000)
 
   }
