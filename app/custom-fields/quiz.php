@@ -79,7 +79,7 @@ register_field_group(array (
       array (
           'key' => 'quiz_definition_score_okay_label',
           'label' => 'Score "okay" label',
-          'name' => 'score_okay_label',
+          'name' => 'score_okay',
           'prefix' => '',
           'type' => 'text',
           'instructions' => 'e.g. "Okay so you didn’t embarrass yourself"',
@@ -110,7 +110,7 @@ register_field_group(array (
       array (
           'key' => 'quiz_definition_score_good_label',
           'label' => 'Score "good" label',
-          'name' => 'score_good_label',
+          'name' => 'score_good',
           'prefix' => '',
           'type' => 'text',
           'instructions' => 'e.g. Nice going, there could be a career in answering quiz questions ahead of you',

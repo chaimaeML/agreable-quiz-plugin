@@ -16,20 +16,21 @@
   position relative
 
 /* Module/Block: Question */
-.question
+.quiz__question
   margin-bottom 30px
-  overflow hidden
+  display inline-block
 
-.question__number
+.quiz__question__number
+  display inline
   margin-bottom 1rem
 
-.question__label
-  float left
+.quiz__question__label
+  display inline
   margin-bottom 0
   line-height 1.3rem
 
 /* Module/Block: Question Image */
-.question-image
+.quiz__question-image
   margin 30px auto;
   max-width 220px
   display block
@@ -39,12 +40,12 @@
     max-width 300px
 
 /* Module/Block: Answers */
-.answers
+.quiz__answers
   clear both
   margin-bottom 0
   box-sizing border-box
 
-.answers li
+.quiz__answers li
   width: 48%;
   margin-right: 4%;
   margin-bottom: 30px;
@@ -52,11 +53,11 @@
   position: relative;
   list-style none
 
-.answers li:nth-child(even)
+.quiz__answers li:nth-child(even)
   margin-right 0
 
 /* Module/Block: Answer */
-.answer
+.quiz__answer
   min-height: 90px;
   display: block;
   cursor: pointer;
@@ -67,44 +68,44 @@
   width 100%
   height 100%
 
-.answer:hover
+.quiz__answer:hover
   background-color black
   color white
 
-.answer-text
+.quiz__answer-text
   display table-cell
   text-align center
   pointer-events none
   vertical-align middle
   padding 10px
 
-.answer.selected
+.quiz__answer.is-selected
   background-color black
   color white
   box-sizing border-box
 
-.answer .answer-image
+.quiz__answer .answer-image
   width 90%
   margin 5%
 
-/* Module/Block: Quiz Complete Panel */
-.quiz-complete-panel
+/* Module/Block: Quiz Progress Panel */
+.quiz__progress-panel
   border-top 1px solid #dcdcdc
   padding-top 30px
   margin-bottom -3px
 
-.quiz-complete-panel h1
+.quiz__progress-panel__text
   margin-bottom 10px
 
 /* Module/Block: Quiz Complete Panel Progress */
-.cp-progress
+.quiz__progress-counter
   position: static;
 
-.cp-progress.is-static
+.quiz__progress-counter.is-static
   position: static;
 
 @media (min-width: 768px)
-  .cp-progress
+  .quiz__progress-counter
     display: block;
     position: fixed;
     padding-top: 5px;
@@ -114,15 +115,16 @@
     transform: translateZ(0);
 
 @media (min-width: 1024px)
-  .cp-progress
+  .quiz__progress-counter
     width: auto;
     max-width: 650px;
 
-.cp-progress ul
+.quiz__progress-counter ul
   margin-bottom: 0;
   margin-right: 1px;
+  margin-top: 0;
 
-.cp-progress li
+.quiz__progress-counter li
   cursor: pointer;
   float: left;
   width: 30px;
@@ -137,11 +139,11 @@
   perspective: 1000;
   list-style none
 
-.cp-progress li:last-child
+.quiz__progress-counter li:last-child
   margin-right: 0;
 
-.cp-progress li .front
-.cp-progress li .back
+.quiz__progress-counter li .front
+.quiz__progress-counter li .back
   width: 30px;
   height: 30px;
   overflow: hidden;
@@ -154,35 +156,31 @@
   font-family: arial;
 
 /* Module/Block: Score Panel */
-.score-panel
+.quiz__score-panel
   display: block;
   color: white;
   margin-top: 14px;
   user-select: initial;
 
-.score-panel__message
+.quiz__score-panel__message
   margin-bottom: 17px;
-  color black
 
-.score-panel__summary
-  color gray
-
-.score-panel__message
-.score-panel__summary
+.quiz__score-panel__message
+.quiz__score-panel__summary
   opacity 0
   transition: opacity 1s;
 
-.score-panel__message.is-revealed
-.score-panel__summary.is-revealed
+.quiz__score-panel__message.is-revealed
+.quiz__score-panel__summary.is-revealed
   opacity 1
 
-.score-panel__summary
+.quiz__score-panel__summary
   margin-bottom 18px
   position static
   display block
 
 // Formally .outcome-image
-.score-panel__image
+.quiz__score-panel__image
   display: none;
   max-width: 300px;
   margin-bottom: 22px;
@@ -191,7 +189,7 @@
   margin-right: auto;
 
 @media (min-width: 500px)
-  .outcome-image
+  .quiz__score-panel__image
     float: right;
     margin-bottom: 30px;
     margin-top: 6px;
@@ -227,28 +225,28 @@
   background-color: #dcdcdc;
   color: black;
 
-li.answered .flipper
+li.is-answered .flipper
   transform: rotateY(180deg);
 
-.quiz-complete.answered .flipper
+.is-complete.is-answered .flipper
   transform: rotateY(0deg);
   color: white;
 
-.quiz-complete.correct .flipper__circle
+.is-complete.is-correct .flipper__circle
   background-color: rgb(34, 134, 34);
   color: white;
 
-.quiz-complete.incorrect .flipper__circle
+.is-complete.is-incorrect .flipper__circle
   background-color: #DD371E;
   color: white;
 
 /* TODO */
 /* Module/Block: Answer Info */
-.answer-information
+.quiz__answer-information
   opacity 0
   transition: opacity 1s;
 
-.answer-information
+.quiz__answer-information
   display: none;
   position: relative;
   top: -30px;
@@ -262,7 +260,7 @@ li.answered .flipper
   font-size: 16px;
   box-shadow: 0px 5px 24px -7px rgba(10, 8, 8, 0.53);
 
-.answer-information:before
+.quiz__answer-information:before
   content: '';
   position: absolute;
   left: 50%;
@@ -274,13 +272,13 @@ li.answered .flipper
   background: rgb(234, 234, 234);
   top: -10px;
 
-.quiz-complete .answer-information
+.is-complete .quiz__answer-information
   display: block;
 
-.answer-information.is-revealed
+.quiz__answer-information.is-revealed
   opacity 1
 
-.quiz-sharing-wrapper
+.sharing
   position relative
   margin 40px auto
   transition all 0.5s ease-out
@@ -292,22 +290,22 @@ li.answered .flipper
     opacity 1
     min-height 320px
 
-.quiz-sharing-facebook
+.sharing-facebook
   background-color #3b5999
   &:hover
     background-color #293e6b
 
-.quiz-sharing-twitter
+.sharing-twitter
   background-color #55acee
   &:hover
     background-color #157ece
 
-.quiz-sharing-google
+.sharing-google
   background-color #dd4b39
   &:hover
     background-color #a62c1d
 
-.quiz-sharing-bfc
+.sharing-bfc
   position absolute
   left 50%
   transform translateX(-50%)
@@ -316,13 +314,13 @@ li.answered .flipper
   height 100%
   border-radius 100%
 
-.quiz-sharing-content
+.sharing-content
   width: 100%
   position absolute
   top 50%
   transform translateY(-50%)
 
-.quiz-sharing-quote
+.sharing-quote
   font-size 24px
   margin-top 20px
   margin-bottom 20px
@@ -341,7 +339,7 @@ li.answered .flipper
   margin auto
 
 .btn
-  &.quiz-sharing-button
+  &.sharing-button
     border-radius 0px !important
     text-transform uppercase
     display block
@@ -352,32 +350,33 @@ li.answered .flipper
     font-size 14px
     letter-spacing 0.1em
     padding 0px
-  &.quiz-sharing-vote-button
+    line-height 2em
+    cursor pointer
+  &.sharing-vote-button
     border-radius 10px !important
     height auto
     padding 10px
     line-height 1.3
 
 @media (min-width: 480px)
-  .btn.quiz-sharing-button
+  .btn.sharing-button
     font-size 16px
     letter-spacing 0.19em
 
-.quiz-sharing-facebook
+.sharing-facebook
   background-color #3b5999
   &:hover
     background-color #293e6b
 
-.quiz-sharing-twitter
+.sharing-twitter
   background-color #55acee
   &:hover
     background-color #157ece
 
-.quiz-sharing-google
+.sharing-google
   background-color #dd4b39
   &:hover
     background-color #a62c1d
 
-.is-black-bold
-  color #000
+.is-bold
   font-weight bold
