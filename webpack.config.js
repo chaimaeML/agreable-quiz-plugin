@@ -31,7 +31,7 @@ module.exports = {
     context: __dirname,
     extensions: ['','.js', '.json', '.styl'],
     modulesDirectories: [
-      'widgets', 'javascripts', 'web_modules', 'style-atoms', 'node_modules'
+      'src', 'javascripts', 'web_modules', 'style-atoms', 'node_modules'
     ]
   },
 
