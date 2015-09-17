@@ -97,9 +97,13 @@ HTML;
     $ns = Helper::get('agreable_namespace');
     echo view('@AgreableQuizPlugin/styles.twig', [
         'common_css_path'   => Helper::asset('styles.css'),
-        'plugin_settings_property_primary_colour'      => get_field($ns.'_plugin_settings_property_primary_colour', 'option'),
-        'plugin_settings_property_secondary_colour'    => get_field($ns.'_plugin_settings_property_secondary_colour', 'option'),
-        'plugin_settings_property_font_family'         => get_field($ns.'_plugin_settings_property_font_family', 'option'),
+        'button_bg_colour'          => get_field($ns.'_plugin_settings_property_button_bg_colour', 'option'),
+        'button_bg_colour_hover'    => get_field($ns.'_plugin_settings_property_button_bg_colour_hover', 'option'),
+        'button_text_colour'        => get_field($ns.'_plugin_settings_property_button_text_colour', 'option'),
+        'button_text_colour_hover'  => get_field($ns.'_plugin_settings_property_button_text_colour_hover', 'option'),
+        'share_bg_colour'           => get_field($ns.'_plugin_settings_property_share_bg_colour', 'option'),
+        'primary_font_family'       => get_field($ns.'_plugin_settings_property_primary_font_family', 'option'),
+        'secondary_font_family'     => get_field($ns.'_plugin_settings_property_secondary_font_family', 'option'),
         'plugin_settings_free_text'                    => get_field($ns.'_plugin_settings_free_text_css', 'option'),
     ])->getBody();
   }
