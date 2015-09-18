@@ -105,10 +105,12 @@ class Quiz extends Backbone.View {
 
   positionProgressBar() {
 
-    if (($(window).scrollTop() + $(window).height()-100) > $('.js-quiz-progress-anchor').offset().top) {
-      $('.js-quiz-progress-counter').addClass('is-static')
+    var scrollPos = $(window).scrollTop() + $(window).height()-100;
+    if(scrollPos > $('.js-quiz-progress-anchor').offset().top ||
+        scrollPos < $('.js-quiz-question:first-child').offset().top ) {
+      $('.js-quiz-progress-counter').removeClass('is-fixed')
     } else {
-      $('.js-quiz-progress-counter').removeClass('is-static')
+      $('.js-quiz-progress-counter').addClass('is-fixed')
     }
   }
 
