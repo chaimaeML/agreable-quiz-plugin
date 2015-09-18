@@ -68,7 +68,7 @@ HTML;
   public function render_js_vars(){
 
     $ns = Helper::get('agreable_namespace');
-    $facebook_app_id = get_field($ns.'_plugin_settings_property_facebook_app_id', 'option');
+    $facebook_app_id = get_field($ns.'_facebook_app_id', 'option');
 
     echo "<script>";
     if(!empty($facebook_app_id)){
@@ -97,13 +97,13 @@ HTML;
     $ns = Helper::get('agreable_namespace');
     echo view('@AgreableQuizPlugin/styles.twig', [
         'common_css_path'   => Helper::asset('styles.css'),
-        'button_bg_colour'          => get_field($ns.'_plugin_settings_property_button_bg_colour', 'option'),
-        'button_bg_colour_hover'    => get_field($ns.'_plugin_settings_property_button_bg_colour_hover', 'option'),
-        'button_text_colour'        => get_field($ns.'_plugin_settings_property_button_text_colour', 'option'),
-        'button_text_colour_hover'  => get_field($ns.'_plugin_settings_property_button_text_colour_hover', 'option'),
-        'share_bg_colour'           => get_field($ns.'_plugin_settings_property_share_bg_colour', 'option'),
-        'primary_font_family'       => get_field($ns.'_plugin_settings_property_primary_font_family', 'option'),
-        'secondary_font_family'     => get_field($ns.'_plugin_settings_property_secondary_font_family', 'option'),
+        'button_bg_colour'          => get_field($ns.'_button_bg_colour', 'option'),
+        'button_bg_colour_hover'    => get_field($ns.'_button_bg_colour_hover', 'option'),
+        'button_text_colour'        => get_field($ns.'_button_text_colour', 'option'),
+        'button_text_colour_hover'  => get_field($ns.'_button_text_colour_hover', 'option'),
+        'share_bg_colour'           => get_field($ns.'_share_bg_colour', 'option'),
+        'primary_font_family'       => get_field($ns.'_primary_font_family', 'option'),
+        'secondary_font_family'     => get_field($ns.'_secondary_font_family', 'option'),
         'plugin_settings_free_text'                    => get_field($ns.'_plugin_settings_free_text_css', 'option'),
     ])->getBody();
   }
