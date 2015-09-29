@@ -124,10 +124,10 @@ class Quiz extends Backbone.View {
   getTextOutcome() {
     var mostPopularOutcome = {index: 1, score: 0}
 
-    textOutcomes.forEach($.proxy(function onOutcome(outcome){
-      var score = this.$el.find('.answers .is-selected[data-outcome-' + outcome.index + ']').length
+    textOutcomes.forEach($.proxy(function(outcome, index){
+        var score = this.$el.find('.js-quiz-question .is-selected[data-outcome-' + (index+1) + ']').length
         if (score > mostPopularOutcome.score) {
-          mostPopularOutcome.index = outcome.index
+          mostPopularOutcome.index = index+1
           mostPopularOutcome.score = outcome.score = score
         }
     }, this))
@@ -138,7 +138,7 @@ class Quiz extends Backbone.View {
   showTextOutcome(outcome) {
     $('.js-quiz-score-message').html(outcome.label)
     $('.js-quiz-score-summary').html(outcome.description)
-    $('.js-quiz-outcome-image').attr('src', outcome.image).show()
+    $('.js-quiz-outcome-image').attr('src', outcome.image).fadeIn()
     $('.js-sharing-outcome').html(`My result <span class="is-bold">${outcome.label}</span>`)
     this.shareText = $('.js-sharing-quote').text();
     this.showMore(1000)
