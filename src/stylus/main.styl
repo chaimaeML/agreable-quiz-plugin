@@ -101,15 +101,23 @@
 .quiz__progress-counter
   position: static;
 
-.quiz__progress-counter.is-static
-  position: static;
+.quiz__progress-counter.is-fixed
+  position: fixed;
+
+.quiz__progress-counter.is-fixed ul
+  position relative
+  top 40px
+  transform translateY(-40px)
+  transition transform 0.5s
+
 
 @media (min-width: 768px)
   .quiz__progress-counter
     display: block;
-    position: fixed;
+    position: static;
     padding-top: 5px;
     padding-bottom: 5px;
+    overflow hidden
     bottom: 0px;
     width: 100%;
     transform: translateZ(0);

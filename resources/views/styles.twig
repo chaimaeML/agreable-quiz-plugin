@@ -7,32 +7,39 @@
         Configurable CSS values provided through WP settings panel.
         Overrides values in common CSS.
     #}
-    .quiz__answer {
-      background-color: {{ plugin_settings_property_secondary_colour|default('#ff00ff') }};
-      color: {{ plugin_settings_property_primary_colour|default('#000') }};
-      {% if plugin_settings_property_font_family %}
-      font-family: {{ plugin_settings_property_font_family }};
+    .quiz__question__label {
+      {% if primary_font_family %}
+      font-family: {{ primary_font_family }};
       {% endif %}
     }
 
-    .flipper__circle--back {
-      background-color: {{ plugin_settings_property_secondary_colour|default('#ff00ff') }};
-      color: {{ plugin_settings_property_primary_colour|default('#000') }};
+    .quiz__answer {
+      background-color: {{ button_bg_colour|default('#ff00ff') }};
+      color: {{ button_text_colour|default('#fff') }};
 
+      {% if secondary_font_family %}
+      font-family: {{ secondary_font_family }};
+      {% endif %}
+    }
+
+    .quiz__answer.is-selected,
+    .quiz__answer:hover {
+      background-color: {{ button_bg_colour_hover|default('#000') }};
+      color: {{ button_text_colour_hover|default('#fff') }};
+    }
+
+    .flipper__circle--back {
+      background-color: {{ button_bg_colour|default('#ff00ff') }};
+      color: {{ button_text_colour|default('#000') }};
     }
 
     .flipper__circle--front {
-      background-color: {{ plugin_settings_property_primary_colour|default('#ff00ff') }};
-      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
-
-    }
-
-    .quiz__score-panel__summary {
-      color: {{ plugin_settings_property_secondary_colour|default('#000') }};
+      background-color: {{ button_bg_colour_hover|default('#000') }};
+      color: {{ button_text_colour_hover|default('#fff') }};
     }
 
     .sharing-bfc {
-      background-color: {{ plugin_settings_property_primary_colour|default('#000') }};
+      background-color: {{ share_bg_colour|default('#000') }};
     }
 
     {# Free text CSS also provided through WP settings panel. #}
