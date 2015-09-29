@@ -21,8 +21,8 @@ register_field_group(array (
           'name' => 'quiz_type',
           'prefix' => '',
           'type' => 'select',
-          'instructions' => 'Score outcome "You scored 15 out of 20!"
-          Text outcome "You\'re a Lion Tamer!"',
+          'instructions' => 'Score: "You scored 15 out of 20!" <br/>
+          Personality:  "You\'re a Lion Tamer!"',
           'required' => 0,
           'conditional_logic' => 0,
           'wrapper' => array (
@@ -31,8 +31,8 @@ register_field_group(array (
               'id' => '',
           ),
           'choices' => array (
-              'score' => 'Score outcome',
-              'text' => 'Text outcome',
+              'score' => 'Score',
+              'text' => 'Personality',
           ),
           'default_value' => array (
               'score' => 'score',
