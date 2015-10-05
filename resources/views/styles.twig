@@ -7,11 +7,14 @@
         Configurable CSS values provided through WP settings panel.
         Overrides values in common CSS.
     #}
+    {% if primary_font_family %}
     .quiz__question__label {
-      {% if primary_font_family %}
-      font-family: {{ primary_font_family }};
-      {% endif %}
+      font-family: {{ primary_font_family|raw }};
     }
+    .sharing-button {
+      font-family: {{ primary_font_family|raw }};
+    }
+    {% endif %}
 
     .quiz__answer {
       background-color: {{ button_bg_colour|default('#ff00ff') }};
