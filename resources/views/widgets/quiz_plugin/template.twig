@@ -47,7 +47,7 @@
       <ul data-question-index="question-{{loop.index0}}" class="quiz__answers quiz__answers-{{q.answers|length}}">
         {% for answer in q.answers %}
         <li>
-          <div class="js-quiz-answer quiz__answer" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
+          <div class="js-quiz-answer quiz__answer{% if answer.image %} quiz__answer--image{% endif %}" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
             {% if answer.image %}
             <img class="quiz__answer-image" src="{{TimberImage(answer.image).src('medium')}}"/>
             {% else %}
