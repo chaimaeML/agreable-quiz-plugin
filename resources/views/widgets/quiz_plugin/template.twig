@@ -29,95 +29,89 @@
     ];
   </script>
 
-  {% if widget and widget.contain %}
-  <div class="container">
-  {% endif %}
-    {% for q in quiz.get_field('questions') %}
-    <section class="js-quiz-question quiz__question-container">
-      <header class="quiz__question">
-        <hgroup>
-          <h2 class="quiz__question__number">Q{{loop.index}}.</h2>
-          <h3 class="quiz__question__label">{{q.question}}</h3>
-        </hgroup>
-      </header>
-      {% if q.image %}
-      <img class="quiz__question-image" src="{{TimberImage(q.image).src('large')}}"/>
-      {% endif %}
+  {% for q in quiz.get_field('questions') %}
+  <section class="js-quiz-question quiz__question-container">
+    <header class="quiz__question">
+      <hgroup>
+        <h2 class="quiz__question__number">Q{{loop.index}}.</h2>
+        <h3 class="quiz__question__label">{{q.question}}</h3>
+      </hgroup>
+    </header>
+    {% if q.image %}
+    <img class="quiz__question-image" src="{{TimberImage(q.image).src('large')}}"/>
+    {% endif %}
 
-      <ul data-question-index="question-{{loop.index0}}" class="quiz__answers quiz__answers-{{q.answers|length}}">
-        {% for answer in q.answers %}
-        <li>
-          <div class="js-quiz-answer quiz__answer{% if answer.image %} quiz__answer--image{% endif %}" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
-            {% if answer.image %}
-            <img class="quiz__answer-image" src="{{TimberImage(answer.image).src('medium')}}"/>
-            {% else %}
-            <div class="quiz__answer-text">
-              {{ answer.answer_label }}
+    <ul data-question-index="question-{{loop.index0}}" class="quiz__answers quiz__answers-{{q.answers|length}}">
+      {% for answer in q.answers %}
+      <li>
+        <div class="js-quiz-answer quiz__answer{% if answer.image %} quiz__answer--image{% endif %}" {% if answer.is_correct %}data-cor{%else%}data-inc{%endif%} {%if answer.text_outcome %}data-outcome-{{answer.text_outcome}}{% endif %}>
+          {% if answer.image %}
+          <img class="quiz__answer-image" src="{{TimberImage(answer.image).src('medium')}}"/>
+          {% else %}
+          <div class="quiz__answer-text">
+            {{ answer.answer_label }}
+          </div>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if q.answer_information %}
+    <div class="js-quiznanswer-info quiz__answer-information mobile">
+      {{q.answer_information|raw}}
+    </div>
+    {% endif %}
+  </section>
+  {% endfor %}
+
+  <section class="js-quiz-progress-panel quiz__progress-panel">
+    <div class="js-quiz-progress-anchor"></div>
+    <header>
+      <h3 class="js-quiz-progress-text quiz__progress-panel__text">0 questions of 20 answered</h3>
+    </header>
+    <div class="js-quiz-progress-counter quiz__progress-counter is-static">
+      <ul class="quiz__progress-counter__items">
+        {% for q in quiz.get_field('questions') %}
+        <li data-number="{{loop.index}}">
+          <div class="flipper">
+            <div class="flipper__circle flipper__circle--front">
+              {{loop.index}}
             </div>
-            {% endif %}
+            <div class="flipper__circle flipper__circle--back">
+              {{loop.index}}
+            </div>
           </div>
         </li>
         {% endfor %}
       </ul>
-      {% if q.answer_information %}
-      <div class="js-quiznanswer-info quiz__answer-information mobile">
-        {{q.answer_information|raw}}
-      </div>
-      {% endif %}
-    </section>
-    {% endfor %}
+    </div>
+  </section>
 
-    <section class="js-quiz-progress-panel quiz__progress-panel">
-      <div class="js-quiz-progress-anchor"></div>
-      <header>
-        <h3 class="js-quiz-progress-text quiz__progress-panel__text">0 questions of 20 answered</h3>
-      </header>
-      <div class="js-quiz-progress-counter quiz__progress-counter is-static">
-        <ul class="quiz__progress-counter__items">
-          {% for q in quiz.get_field('questions') %}
-          <li data-number="{{loop.index}}">
-            <div class="flipper">
-              <div class="flipper__circle flipper__circle--front">
-                {{loop.index}}
-              </div>
-              <div class="flipper__circle flipper__circle--back">
-                {{loop.index}}
-              </div>
-            </div>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </section>
+  <section class="quiz__score-panel">
+    <img class="quiz__score-panel__image js-quiz-outcome-image"/>
+    <h3 class="js-quiz-score-message quiz__score-panel__message">
+      You scored <span class="js-quiz-score">0</span> out of <span class="js-quiz-total">0</span>!
+    </h3>
+    <div class="js-quiz-score-summary quiz__score-panel__summary"></div>
+    <div id="quiz-share" class="addthis_sharing_toolbox"></div>
+    <script type="text/template" id="quiz-message-bad">{{ quiz.score_bad|raw }}</script>
+    <script type="text/template" id="quiz-message-okay">{{ quiz.score_okay|raw }}</script>
+    <script type="text/template" id="quiz-message-good">{{ quiz.score_good|raw }}</script>
+    <script type="text/template" id="quiz-message-excellent">{{ quiz.score_excellent|raw }}</script>
+  </section>
 
-    <section class="quiz__score-panel">
-      <img class="quiz__score-panel__image js-quiz-outcome-image"/>
-      <h3 class="js-quiz-score-message quiz__score-panel__message">
-        You scored <span class="js-quiz-score">0</span> out of <span class="js-quiz-total">0</span>!
-      </h3>
-      <div class="js-quiz-score-summary quiz__score-panel__summary"></div>
-      <div id="quiz-share" class="addthis_sharing_toolbox"></div>
-      <script type="text/template" id="quiz-message-bad">{{ quiz.score_bad|raw }}</script>
-      <script type="text/template" id="quiz-message-okay">{{ quiz.score_okay|raw }}</script>
-      <script type="text/template" id="quiz-message-good">{{ quiz.score_good|raw }}</script>
-      <script type="text/template" id="quiz-message-excellent">{{ quiz.score_excellent|raw }}</script>
-    </section>
-
-    <section class="js-sharing sharing hide-wrapper">
-      <div class="sharing-bfc"></div>
-      <div class="sharing-content">
-        <div class="js-sharing-quote sharing-quote"><span>“</span><em><span>{{quiz.title}} - </span><span class="js-sharing-outcome"></span></em><span>”</span>
-        </div>
-        <div class="sharing-row">
-          <button class="sharing-button sharing-facebook js-share-facebook btn">Facebook</button>
-          <button class="sharing-button sharing-twitter js-share-twitter btn">Twitter</button>
-          <button class="sharing-button sharing-google js-share-google btn">Google+</button>
-        </div>
+  <section class="js-sharing sharing hide-wrapper">
+    <div class="sharing-bfc"></div>
+    <div class="sharing-content">
+      <div class="js-sharing-quote sharing-quote"><span>“</span><em><span>{{quiz.title}} - </span><span class="js-sharing-outcome"></span></em><span>”</span>
       </div>
-    </section>
-    {% if widget and widget.contain %}
-  </div>
-  {% endif %}
+      <div class="sharing-row">
+        <button class="sharing-button sharing-facebook js-share-facebook btn">Facebook</button>
+        <button class="sharing-button sharing-twitter js-share-twitter btn">Twitter</button>
+        <button class="sharing-button sharing-google js-share-google btn">Google+</button>
+      </div>
+    </div>
+  </section>
 
   <script>
     (function(d, s, id) {
