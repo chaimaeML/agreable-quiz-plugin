@@ -87,6 +87,22 @@
   color white
   box-sizing border-box
 
+.quiz__answer--image.is-selected
+  position relative
+  opacity 0.75
+
+.quiz__answer--image.is-selected:after
+  color white
+  content "✓"
+  font-size 150px
+  position absolute
+  top 50%
+  width 100%
+  z-index 100
+  text-align center
+  transform translateY(-50%)
+  -webkit-filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));
+
 .quiz__answer .answer-image
   width 90%
   margin 5%

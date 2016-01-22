@@ -4,6 +4,7 @@
   "description": "Shortlist Media Quiz Plugin",
   "main": "gulpfile.js",
   "scripts": {
+    "start": "npm install && webpack --watch --debug",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch --debug",
     "webpack-production": "webpack -p"
